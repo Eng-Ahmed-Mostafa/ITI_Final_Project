@@ -1,6 +1,7 @@
 <?php
 
 // use App\Models\Post;
+use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -9,9 +10,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -47,8 +46,8 @@ Route::get('/auth/github/callback', function () {
     $githubUser = Socialite::driver('github')->user();
 
     // dd($githubUser);
-    $user = User::firstOrCreate(
-    [
+    $user = User::updateOrCreate(
+    [   
             'porvider_id'   => $githubUser->getId(),
             'porvider_name' => "github",
         ],

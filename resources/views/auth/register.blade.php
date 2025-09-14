@@ -48,8 +48,11 @@
                 {{ __('Register') }}
             </x-primary-button>
         </div>
-        <a href="{{ route('github.login',['lang'=>App::getLocale()]) }}" class="btn btn-danger">
-            تسجيل الدخول عبر Google
+        <a href="{{ route('github.login',['lang'=>App::getLocale()]) }}" class="text-center">
+             <x-secondary-button class="ms-4">
+                sign in with Github
+             </x-secondary-button>
+          
         </a>
 
     </form>
